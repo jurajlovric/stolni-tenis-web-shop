@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trgovina-kupovina</title>
+    <title>Kupovina</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,15 +21,23 @@
                     <li><a href="login.html">Login</a></li>
                 </ul>
             </nav>
-            <img src="img/kosara.png" width="30px" height="30px">
+            <a href="cart.html"><img src="img/kosara.png" width="30px" height="30px"></a>
             <img src="img/menu.png" class="menu-icon" onclick="menutoggle()">
         </div>
     </div>
 
-    <!-- proizvodi -->
+    <!-- naslov i dropdown -->
     <div class="small-container">
-        <h2 class="title">Svi proizvodi</h2>
-        <div class="row">
+        <div class="row row-2">
+            <h2 class="title">Svi proizvodi</h2>
+            <select id="myDropdown" onchange="sortDivs()">
+                <option value="Reketi">Reketi</option>
+                <option value="Gume">Gume</option>
+                <option value="Loptice">Loptice</option>
+            </select>
+        </div>
+        <!-- proizvodi -->
+        <div class="row sortable-div" id="Reketi">
             <div class="col-4">
                 <a href="item.html"><img src="img/andro-blade kanter.jpg"></a>
                 <h4>ANDRO - blade Kanter FO ALL/S</h4>
@@ -46,7 +54,7 @@
                 <p>83 €</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row sortable-div" id="Gume">
             <div class="col-4">
                 <img src="img/yasaka-rubber-rakza.jpg">
                 <h4>Yasaka rubber Rakza 9</h4>
@@ -63,7 +71,7 @@
                 <p>52 €</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row sortable-div" id="Loptice">
             <div class="col-4">
                 <img src="img/andro-balls-zero t.jpg">
                 <h4>ANDRO - balls Zero T*** 72 pcs</h4>
@@ -101,6 +109,7 @@
     </div>
 
 
-    <script src="script.js"></script>
+    <script src="menu.js"></script>
+    <script src="kupovina.js"></script>
 </body>
 </html>

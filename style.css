@@ -291,7 +291,8 @@ th:last-child{
     text-align: center;
     padding: 20px 0;
     margin: auto;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 20px 0  rgb(0,0,0,0.1);
+    overflow: hidden;
 }
 .form-container span{
     font-weight: bold;
@@ -312,14 +313,14 @@ th:last-child{
     transition: transform 1s;
 }
 form input{
-    width: 100%;
+    width: 90%;
     height: 30px;
     margin: 10px 0;
     padding: 0 10px;
     border: 1px solid darkorange;
 }
 form .btn{
-    width: 100%;
+    width: 90%;
     border: none;
     cursor: pointer;
     margin: 10px 0;
@@ -327,10 +328,10 @@ form .btn{
 form .btn:focus{
     outline: none;
 }
-#login-form{
+#LoginForm{
     left: -350px;
 }
-#reg-form{
+#RegForm{
     left: 0;
 }
 #indicator{
@@ -339,5 +340,6 @@ form .btn:focus{
     background: darkorange;
     height: 3px;
     margin-top: 8px;
-    transform: translateX(100px);
+    transform: translateX(60px);
+    transition: transform 1s;
 }
