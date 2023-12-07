@@ -56,8 +56,8 @@ if(isset($_POST['add-to-cart'])) {
         $query = mysqli_query($conn, 'select id from cart where user_id = '. $user_id . ' and is_paid = 0');
         $ret = mysqli_fetch_array($query);
         $cart_id = $ret[0];
-        $query = mysqli_query($conn, 'insert into cart_item (cart_id, item_id, size) values
-        ("' . $cart_id . '","'. $item_id .'", "'. $size .'")');
+        $query = mysqli_query($conn, 'insert into cart_item (cart_id, item_id) values
+        ("' . $cart_id . '","'. $item_id .'")');
         
     }
     
@@ -115,7 +115,7 @@ if(isset($_POST['add-to-cart'])) {
                         $result = $conn->query($sql);
                             if($result->num_rows) {
                                 $row = $result->fetch_assoc();
-                                echo '<img src="'.$row['image'].'" onclick="openModal()" alt="" id="front-image">';
+                                echo '<img src="'.$row['image'].'" alt="" id="front-image">';
                             }
                     }
         ?>
@@ -163,5 +163,6 @@ if(isset($_POST['add-to-cart'])) {
 
 
     <script src="menu.js"></script>
+    <script src="item.js"></script>
 </body>
 </html>

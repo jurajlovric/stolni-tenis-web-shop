@@ -109,14 +109,14 @@ if(isset($_POST['remove-item'])){
                                         
                                         echo '<article class="">';
                                         echo '<div class="">';
-                                        echo '<img src="'. $firstImage .'" class="" alt="">';
+                                        echo '<img src="'. $ret[1] .'" class="" alt="">';
                                         echo '<div class="">';
-                                        echo '<h1 class="">'. $name .'</h1>';
-                                        echo '<h1 class="">'. $price .'&euro;</h1>';
+                                        echo '<h1 class="">'. $ret[2] .'</h1>';
+                                        echo '<h1 class="">'. $ret[3] .'&euro;</h1>';
                                         echo '</div>';
                                         echo '</div>';
                                         echo '<form name="remove-item-form" class="cart-form" method="post">';
-                                        echo '<input type="hidden" name="cart-item-cijena" value="'.$price.'"/>';
+                                        echo '<input type="hidden" name="cart-item-cijena" value="'.$ret[3].'"/>';
                                         echo '<input type="hidden" name="cart-item-id" value="'.$cart_item_id.'"/>';
                                         echo '<input type="submit" name="remove-item" value="&#10005;" id="close-btn-item"/>';
                                         echo '</form>';

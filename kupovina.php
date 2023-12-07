@@ -56,12 +56,10 @@ $result = $conn->query($sql);
         <?php
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $imageString=$row['image'];
-                    $imageArray = explode(',', $imageString);
-                    $firstImage = $imageArray[0];
+                    $image=$row['image'];
                     echo '<a href="item.php?id=' . $row['id'] . '">';
                     echo '<article class="row">';
-                    echo '<img class="col-4" src=' . $firstImage. '>';
+                    echo '<img class="col-4" src=' . $image. '>';
                     echo '<div class="">';
                     echo '<h1 class="item-title">'.$row['ime'].'</h1>';
                     echo '<div class="price"><h1>'.$row['cijena'].'&euro;</h1></div>';
