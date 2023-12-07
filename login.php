@@ -1,3 +1,46 @@
+<?php
+session_start();
+error_reporting(0);
+include("connection.php"); 
+$loginFailed = false;
+
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $query = mysqli_query($conn, "select id from user where username='$username' AND password='$password' ");
+    $ret = mysqli_fetch_array($query);
+    if ($ret > 0) {
+        $_SESSION['id'] = $ret['id'];
+        header('location: index.php');
+
+    } else { 
+        $loginFailed = true;
+    }
+}
+
+if (isset($_POST['register'])) {
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $query = mysqli_query($conn, 'select id from user where username="' . $username . '"');
+    $ret = mysqli_fetch_array($query);
+    if ($ret > 0) {
+        $usernameTaken = true;
+    } else {
+        $query = mysqli_query($conn, 'insert into user (email, username, password) values 
+        ("' . $email . '", "' . $username . '", "' . $password . '")');
+        $query2 = mysqli_query($conn, 'select id from user where username="' . $username . '"');
+        if ($query) {
+            $ret = mysqli_fetch_array($query2);
+            $_SESSION['id'] = $ret['id'];
+            header('location: index.php');
+        } else {
+            echo '<script>alert("Greška kod registracije")</script>';
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,16 +55,16 @@
     <div class="container">
         <div class="navbar">
             <div>
-                <a href="main.html"><img src="img/logo.png" class="logo" width="125px"></a>
+                <a href="index.php"><img src="img/logo.png" class="logo" width="125px"></a>
             </div>
             <nav>
                 <ul id="MenuItems">
-                    <li><a href="main.html">Home</a></li>
-                    <li><a href="kupovina.html">Kupovina</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="kupovina.php">Kupovina</a></li>
+                    <li><a href="login.php">Login</a></li>
                 </ul>
             </nav>
-            <a href="cart.html"><img src="img/kosara.png" width="30px" height="30px"></a>
+            <a href="cart.php"><img src="img/kosara.png" width="30px" height="30px"></a>
             <img src="img/menu.png" class="menu-icon" onclick="menutoggle()">
         </div>
     </div>
@@ -41,17 +84,17 @@
                             <hr id="indicator">
                         </div>
 
-                        <form id="LoginForm">
-                            <input type="text" placeholder="Username" name="username">
+                        <form id="LoginForm" method="post" action="login.php">
+                            <input type="username" placeholder="Username" name="username">
                             <input type="password" placeholder="Password" name="password">
-                            <button type="submit" class="btn" name="login_user">Login</button>
+                            <button type="submit" class="btn" name="login">Login</button>
                         </form>
 
-                        <form id="RegForm">
+                        <form id="RegForm" method="post" action="#">
                             <input type="text" placeholder="Username" name="username">
                             <input type="email" placeholder="Email" name="email">
                             <input type="password" placeholder="Password" name="password">
-                            <button type="submit" class="btn" name="register_user">Register</button>
+                            <button type="submit" class="btn" name="register">Register</button>
                         </form>
                     </div>
                 </div>
